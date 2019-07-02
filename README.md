@@ -57,9 +57,9 @@ OBS! Justera så att du hämtar aktuell version.
 @php($myData = get_region_halland_acf_page_rss_link_items())
 <h3>{{$myData['title']}}</h3><br>
 @foreach ($myData['rss'] as $data)
-	<a href="{{ $data['link'] }}"><strong>{!! $data['title'] !!}</strong></a><br>
-	<p>{{ $data['description'] }}</p>
-	<p><i>{{ $data['date'] }}</i></p><br>
+  <a href="{{ $data['link'] }}"><strong>{!! $data['title'] !!}</strong></a><br>
+  <p>{{ $data['description'] }}</p>
+  <p><i>{{ $data['date'] }}</i></p><br>
 @endforeach
 ```
 
