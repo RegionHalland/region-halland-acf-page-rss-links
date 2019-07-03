@@ -115,47 +115,58 @@
 		
 		// Rss-url
 		$myRssUrl = get_field('name_1000208');
-		
+
 		// Hur många poster som ska visas
 		$myRssAntal = intval(get_field('name_1000210'));
 
-		// Koppla upp nytt DOM-document
-		$myRss = new DOMDocument();
-	    $myRss->load($myRssUrl);
-
-	    // Tmp-array för feeds
+		// Tmp-array för feeds
 	    $myFeeds = array();
 
 	    // Räknare
 	    $myAntal = 0;
 	    
-	    // Loopa igenom alla poster
-	    foreach ($myRss->getElementsByTagName('item') as $myNode) {
-	        $myItem = array ( 
-	            'title' => $myNode->getElementsByTagName('title')->item(0)->nodeValue,
-	            'link' => $myNode->getElementsByTagName('link')->item(0)->nodeValue,
-	            'description' => $myNode->getElementsByTagName('description')->item(0)->nodeValue,
-	            'date' => get_region_halland_page_rss_link_fix_date($myNode->getElementsByTagName('date')->item(0)->nodeValue),
-	        );
-
-	        // Pusha variabler tillbaka till Tmp-arrayen 
-	        array_push($myFeeds, $myItem);
-	    	
-	        // Iterera räknaren
-	    	$myAntal++;
-
-	    	// Om antal är valt och antal är uppnått, bryt foreach
-	    	if ($myRssAntal <> 0) {
-		    	if ($myAntal == $myRssAntal) {
-		    		break;
-		    	}
-	    	}
-	    }
-
 	    // Array för att samla ihop data
-	    $myData = array();
-	    $myData['title'] = $myRssTitle;
-	    $myData['rss'] = $myFeeds;
+		$myData = array();
+		
+		// Om det finns en angiven url
+		if ($myRssUrl) {
+
+		    // Koppla upp nytt DOM-document
+			$myRss = new DOMDocument();
+		    $myRss->load($myRssUrl);
+
+		    // Loopa igenom alla poster
+		    foreach ($myRss->getElementsByTagName('item') as $myNode) {
+		        $myItem = array ( 
+		            'title' => $myNode->getElementsByTagName('title')->item(0)->nodeValue,
+		            'link' => $myNode->getElementsByTagName('link')->item(0)->nodeValue,
+		            'description' => $myNode->getElementsByTagName('description')->item(0)->nodeValue,
+		            'date' => get_region_halland_page_rss_link_fix_date($myNode->getElementsByTagName('date')->item(0)->nodeValue),
+		        );
+
+		        // Pusha variabler tillbaka till Tmp-arrayen 
+		        array_push($myFeeds, $myItem);
+		    	
+		        // Iterera räknaren
+		    	$myAntal++;
+
+		    	// Om antal är valt och antal är uppnått, bryt foreach
+		    	if ($myRssAntal <> 0) {
+			    	if ($myAntal == $myRssAntal) {
+			    		break;
+			    	}
+		    	}
+		    }
+
+		    $myData['title'] = $myRssTitle;
+		    $myData['rss'] = $myFeeds;
+		    $myData['has_content'] = 1;
+
+		} else {
+
+		    $myData['has_content'] = 0;
+
+		}
 
 	    // Returnera data
 		return $myData;

@@ -55,16 +55,21 @@ OBS! Justera så att du hämtar aktuell version.
 
 ```sh
 @php($myData = get_region_halland_acf_page_rss_link_items())
-<h3>{{$myData['title']}}</h3><br>
-@foreach ($myData['rss'] as $data)
-  <a href="{{ $data['link'] }}"><strong>{!! $data['title'] !!}</strong></a><br>
-  <p>{{ $data['description'] }}</p>
-  <p><i>{{ $data['date'] }}</i></p><br>
-@endforeach
+@if($myData['has_content'] == 1)
+  <h3>{{$myData['title']}}</h3><br>
+  @foreach ($myData['rss'] as $data)
+    <a href="{{ $data['link'] }}"><strong>{!! $data['title'] !!}</strong></a><br>
+    <p>{{ $data['description'] }}</p>
+    <p><i>{{ $data['date'] }}</i></p><br>
+  @endforeach
+@endif
 ```
 
 
 ## Versionhistorik
+
+### 1.1.0
+- Lagt till en kontroll om det finns rss-data
 
 ### 1.0.0
 - Första version
