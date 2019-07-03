@@ -6,7 +6,7 @@
 	/*
 	Plugin Name: Region Halland ACF Page RSS Link
 	Description: ACF-fält för länk till RSS-flöde
-	Version: 1.0.0
+	Version: 1.2.0
 	Author: Roland Hydén
 	License: MIT
 	Text Domain: regionhalland
@@ -110,26 +110,50 @@
 	// Hämta ut rss-länkar
 	function get_region_halland_acf_page_rss_link_items() {
 		
-		// Rss-sidans title
-		$myRssTitle = get_field('name_1000206');
-		
 		// Rss-url
 		$myRssUrl = get_field('name_1000208');
+		
+		// Kontrolelra om det finns en angiven url
+		if ($myRssUrl) {
 
-		// Hur många poster som ska visas
-		$myRssAntal = intval(get_field('name_1000210'));
+			// Kontrollera om denna url existerar
+			// OBS! Bara kontroll av den första byten, inte hela filen
+			if (@file_get_contents($myRssUrl,false,NULL,0,1)) {
+				
+				// Allting ok 
+				$doRss = 1;
 
-		// Tmp-array för feeds
-	    $myFeeds = array();
+			} else {
 
-	    // Räknare
-	    $myAntal = 0;
-	    
+				// Filen finns inte
+				$doRss = 0;
+			
+			}
+
+		} else {
+			
+			// Url finns inte
+			$doRss = 0;
+		
+		}
+
 	    // Array för att samla ihop data
 		$myData = array();
 		
 		// Om det finns en angiven url
-		if ($myRssUrl) {
+		if ($doRss == 1) {
+
+			// Rss-sidans title
+			$myRssTitle = get_field('name_1000206');
+
+			// Hur många poster som ska visas
+			$myRssAntal = intval(get_field('name_1000210'));
+
+			// Tmp-array för feeds
+		    $myFeeds = array();
+
+		    // Räknare
+		    $myAntal = 0;
 
 		    // Koppla upp nytt DOM-document
 			$myRss = new DOMDocument();
