@@ -6,7 +6,7 @@
 	/*
 	Plugin Name: Region Halland ACF Page RSS Link
 	Description: ACF-fält för länk till RSS-flöde
-	Version: 1.2.0
+	Version: 1.3.0
 	Author: Roland Hydén
 	License: MIT
 	Text Domain: regionhalland
@@ -24,7 +24,7 @@
 			// Skapa formlärfält
 			acf_add_local_field_group(array(
 			    
-			    'key' => 'group_2000200',
+			    'key' => 'group_1000204',
 			    'title' => 'RSS-flöde',
 			    'fields' => array(
 			        0 => array(

@@ -68,6 +68,9 @@ OBS! Justera så att du hämtar aktuell version.
 
 ## Versionhistorik
 
+### 1.3.0
+- Bytat namn på ett ACF-fält
+
 ### 1.2.0
 - Lagt till en kontroll om url existerar
 
