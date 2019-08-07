@@ -6,9 +6,9 @@
 	/*
 	Plugin Name: Region Halland ACF Page RSS Link
 	Description: ACF-fält för länk till RSS-flöde
-	Version: 1.3.0
+	Version: 1.4.0
 	Author: Roland Hydén
-	License: MIT
+	License: GPL-3.0
 	Text Domain: regionhalland
 	*/
 

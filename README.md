@@ -1,4 +1,4 @@
-# Hämta RSS-flöden
+# Hämta RSS-flöde
 
 ## Hur man använder Region Hallands plugin "region-halland-acf-page-rss-links"
 
@@ -8,6 +8,14 @@ Nedan följer instruktioner hur du kan använda pluginet "region-halland-acf-pag
 ## Användningsområde
 
 Denna plugin hämtar valfritt rss-flöde
+
+
+## Licensmodell
+
+Denna plugin använder licensmodell GPL-3.0. Du kan läsa mer om denna licensmodell via den medföljande filen:
+```sh
+LICENSE (https://github.com/RegionHalland/region-halland-acf-page-rss-links/blob/master/LICENSE)
+```
 
 
 ## Installation och aktivering
@@ -68,8 +76,12 @@ OBS! Justera så att du hämtar aktuell version.
 
 ## Versionhistorik
 
+### 1.4.0
+- Uppdaterat information om licensmodell
+- Bifogat fil med licensmodell
+
 ### 1.3.0
-- Bytat namn på ett ACF-fält
+- Ändrat namn på ett ACF-fält
 
 ### 1.2.0
 - Lagt till en kontroll om url existerar
